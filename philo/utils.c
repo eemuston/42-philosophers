@@ -6,7 +6,7 @@
 /*   By: eemuston <eemuston@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/04/07 15:01:29 by eemuston          #+#    #+#             */
-/*   Updated: 2023/05/31 16:57:42 by eemuston         ###   ########.fr       */
+/*   Updated: 2023/06/07 10:15:43 by eemuston         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -54,25 +54,22 @@ long long	get_timestamp(void)
 
 void	ft_usleep(long long ms)
 {
-	long long	end;
+	long long	timestamp;
 
-	end = get_timestamp() + ms;
-	while (get_timestamp() < end)
-		usleep(ms / 1000);
+	timestamp = get_timestamp();
+	while (get_timestamp() - timestamp < ms)
+		usleep(300);
 }
 
 int	message(t_philo *philo, char *action, long long time)
 {
-	time = 0;
 	pthread_mutex_lock(&philo->arg->alive_mutex);
 	if (philo->arg->alive == 1)
 	{
 		pthread_mutex_unlock(&philo->arg->alive_mutex);
 		return (-1);
 	}
+	printf("%lld %d %s\n", time, philo->num, action);
 	pthread_mutex_unlock(&philo->arg->alive_mutex);
-	pthread_mutex_lock(&philo->arg->sim);
-	printf("%lld %d %s\n", get_timestamp() - philo->arg->starting_time, philo->num, action);
-	pthread_mutex_unlock(&philo->arg->sim);
 	return (0);
 }

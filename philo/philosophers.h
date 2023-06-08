@@ -6,7 +6,7 @@
 /*   By: eemuston <eemuston@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/04/06 19:42:02 by eemuston          #+#    #+#             */
-/*   Updated: 2023/05/31 16:07:29 by eemuston         ###   ########.fr       */
+/*   Updated: 2023/06/07 15:00:03 by eemuston         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -17,14 +17,6 @@
 # include <stdlib.h>
 # include <sys/time.h>
 # include <pthread.h>
-# include <string.h>
-# define WHITE "\033[0m"
-# define RED "\033[31m"
-# define GREEN "\033[32m"
-# define YELLOW "\033[33m"
-# define BLUE "\033[34m"
-# define PURPLE "\033[35m"
-# define CYAN "\033[36m"
 
 typedef struct s_philo
 {
@@ -65,17 +57,20 @@ void		*start_simulation(void *arg);
 void		init_args(t_args *arg, int argc, char **argv);
 long long	get_timestamp(void);
 void		ft_usleep(long long ms);
-void		init_forks(t_args *arg);
-void		init_thread(t_args *arg);
-void		init_philos(t_args *arg);
+int			init_forks(t_args *arg);
+int			init_thread(t_args *arg);
+int			init_philos(t_args *arg);
 int			simulation(t_philo *philo);
 int			take_forks(t_philo *philo);
 int			sleeping(t_philo *philo);
 int			message(t_philo *philo, char *action, long long time);
 long long	get_time(t_philo *philo);
 int			monitoring(t_args *arg);
-void		join_threads(t_args	*arg);
+void		join_threads(t_args	*arg, int n);
 void		free_all(t_args *arg);
 int			one_philo(t_philo *philo);
+int			check_death(t_args *arg, int i);
+int			eating_checks(t_philo *philo);
+int			good_nums(int argc, char **argv);
 
 #endif
