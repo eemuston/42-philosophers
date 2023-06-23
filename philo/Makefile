@@ -4,7 +4,7 @@ SRC = philosophers.c errors.c utils.c init.c simulation.c utils_two.c monitoring
 
 OBJ = philosophers.o errors.o utils.o init.o simulation.o utils_two.o monitoring.o
 
-FLAGS = -pthread -Wall -Wextra -Werror -O2
+FLAGS = -pthread -Wall -Wextra -Werror -O2 
 
 all: $(NAME)
 

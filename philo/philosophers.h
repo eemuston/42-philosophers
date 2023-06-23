@@ -6,7 +6,7 @@
 /*   By: eemuston <eemuston@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/04/06 19:42:02 by eemuston          #+#    #+#             */
-/*   Updated: 2023/06/07 15:00:03 by eemuston         ###   ########.fr       */
+/*   Updated: 2023/06/23 12:32:57 by eemuston         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -56,7 +56,7 @@ void		init_all(int argc, char **argv);
 void		*start_simulation(void *arg);
 void		init_args(t_args *arg, int argc, char **argv);
 long long	get_timestamp(void);
-void		ft_usleep(long long ms);
+int			ft_usleep(t_philo *philo, long long ms);
 int			init_forks(t_args *arg);
 int			init_thread(t_args *arg);
 int			init_philos(t_args *arg);

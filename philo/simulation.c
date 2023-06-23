@@ -6,7 +6,7 @@
 /*   By: eemuston <eemuston@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/05/29 16:06:02 by eemuston          #+#    #+#             */
-/*   Updated: 2023/06/07 11:17:16 by eemuston         ###   ########.fr       */
+/*   Updated: 2023/06/23 12:34:00 by eemuston         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -16,7 +16,7 @@ int	sleeping(t_philo *philo)
 {
 	if (message(philo, "is sleeping", get_time(philo)) == -1)
 		return (-1);
-	ft_usleep(philo->arg->to_sleep);
+	ft_usleep(philo, philo->arg->to_sleep);
 	return (0);
 }
 
@@ -37,7 +37,7 @@ int	eating_checks(t_philo *philo)
 	pthread_mutex_lock(&philo->p);
 	philo->last_eaten = get_timestamp();
 	pthread_mutex_unlock(&philo->p);
-	ft_usleep(philo->arg->to_eat);
+	ft_usleep(philo, philo->arg->to_eat);
 	pthread_mutex_unlock(philo->left_fork);
 	pthread_mutex_unlock(philo->right_fork);
 	return (0);
@@ -75,7 +75,7 @@ int	simulation(t_philo *philo)
 	if (philo->arg->philo_num == 1)
 		return (one_philo(philo));
 	if (philo->num % 2 == 0)
-		ft_usleep((philo->arg->to_eat) / 2);
+		ft_usleep(philo, (philo->arg->to_eat) / 2);
 	while (1)
 	{
 		if (take_forks(philo) == -1)

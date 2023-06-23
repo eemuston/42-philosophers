@@ -6,7 +6,7 @@
 /*   By: eemuston <eemuston@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/04/07 15:01:29 by eemuston          #+#    #+#             */
-/*   Updated: 2023/06/07 10:15:43 by eemuston         ###   ########.fr       */
+/*   Updated: 2023/06/23 12:32:38 by eemuston         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -52,13 +52,23 @@ long long	get_timestamp(void)
 	return (tv.tv_sec * 1000 + tv.tv_usec / 1000);
 }
 
-void	ft_usleep(long long ms)
+int	ft_usleep(t_philo *philo, long long ms)
 {
 	long long	timestamp;
 
 	timestamp = get_timestamp();
 	while (get_timestamp() - timestamp < ms)
+	{
+		pthread_mutex_lock(&philo->arg->alive_mutex);
+		if (philo->arg->alive == 1)
+		{
+			pthread_mutex_unlock(&philo->arg->alive_mutex);
+			return (-1);
+		}
+		pthread_mutex_unlock(&philo->arg->alive_mutex);
 		usleep(300);
+	}
+	return (0);
 }
 
 int	message(t_philo *philo, char *action, long long time)

@@ -6,7 +6,7 @@
 /*   By: eemuston <eemuston@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/05/30 18:49:46 by eemuston          #+#    #+#             */
-/*   Updated: 2023/06/07 12:58:12 by eemuston         ###   ########.fr       */
+/*   Updated: 2023/06/23 12:33:31 by eemuston         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -15,7 +15,7 @@
 int	one_philo(t_philo *philo)
 {
 	message(philo, "has taken a fork", get_time(philo));
-	ft_usleep(philo->arg->to_die);
+	ft_usleep(philo, philo->arg->to_die);
 	message(philo, "died", get_time(philo));
 	return (0);
 }
